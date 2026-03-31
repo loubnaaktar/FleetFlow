@@ -1,4 +1,30 @@
 package org.example.fleetflow.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "livraison")
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Livraison {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private LocalDateTime dateLivraison;
+    private String adresseDepart;
+    private String adresseDestination;
+    private String Statut;
+
+    @ManyToOne
+    private Chauffeur chauffeur;
+
 }

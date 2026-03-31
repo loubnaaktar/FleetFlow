@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.fleetflow.model.Livraison;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,9 +14,10 @@ import lombok.Setter;
 @Setter
 
 public class ChauffeurDTO {
-    long id ;
-    String nom;
-    String telephone;
-    String permisType;
-    boolean disponible;
+    private long id ;
+    private String nom;
+    private String telephone;
+    private String permisType;
+    private boolean disponible;
+    private List<Livraison> livraisons ;
 }

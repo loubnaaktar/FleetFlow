@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "chaffeur")
 
@@ -17,10 +20,13 @@ import lombok.Setter;
 public class Chauffeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String nom;
-    String telephone;
-    String permisType;
-    boolean disponible;
+    private long id;
+    private String nom;
+    private String telephone;
+    private String permisType;
+    private boolean disponible;
+
+    @OneToMany(mappedBy = "chauffeur")
+    List<Livraison> livraisons = new ArrayList<>();
 
 }
