@@ -11,6 +11,6 @@ public interface VehiculeRepository extends JpaRepository<Vehicule,Long> {
 
     List<Vehicule> findByStatut(Vehicule.StatutVehicule statut);
     List<Vehicule> findByCapaciteGreaterThan(Integer capacite);
-    List<Vehicule> findByStatutAndCapaciteGreaterThan(Vehicule.StatutVehicule statut,Integer capacitr);
+    List<Vehicule> findByStatutAndCapaciteGreaterThan(Vehicule.StatutVehicule statut,Integer capacite);
 
 }
