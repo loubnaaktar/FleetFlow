@@ -18,4 +18,6 @@ public class Client {
     private Long id;
     private String nom;
     private String email;
+    private String ville;
+    private String  telephone;
 }
