@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.fleetflow.model.Chauffeur;
+import org.example.fleetflow.model.Client;
 
 import java.time.LocalDateTime;
 
@@ -21,4 +22,5 @@ public class LivraisonDTO {
     private String adresseDestination;
     private String Statut;
     private Chauffeur chauffeur;
+    private Client client;
 }
