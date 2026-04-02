@@ -16,36 +16,37 @@ public class VehiculeService {
     private final VehiculeRepository vehiculeRepository;
     private final VehiculeMapper vehiculeMapper;
 
-    public VehiculeDTO createVehicule(VehiculeDTO dto){
+    public VehiculeDTO createVehicule(VehiculeDTO dto) {
         Vehicule vehicule = vehiculeMapper.toEntity(dto);
         Vehicule saved = vehiculeRepository.save(vehicule);
         return vehiculeMapper.toDto(saved);
     }
-    public List<VehiculeDTO> getVehiculesDisponible(){
+
+    public List<VehiculeDTO> getVehiculesDisponible() {
         return vehiculeRepository.findByStatut(Vehicule.StatutVehicule.DISPONIBLE)
                 .stream().map(vehiculeMapper::toDto).collect(Collectors.toList());
     }
 
-    public List<VehiculeDTO> getAll(){
+    public List<VehiculeDTO> getAll() {
         return vehiculeRepository.findAll().stream().map(vehiculeMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    public VehiculeDTO getById(Long id){
-        Vehicule vehicule = VehiculeRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("vehicule introuvable"));
-        return VehiculeMapper.toDto(vehicule);
+    public VehiculeDTO getById(Long id) {
+        Vehicule vehicule = vehiculeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("vehicule introuvable"));
+        return vehiculeMapper.toDto(vehicule);
     }
 
-    public VehiculeDTO update(Long id ,VehiculeDTO dto){
-        Vehicule vehicule = VehiculeRepository.findById(id)
-
-                .orElseThrow(()-> new RuntimeException("vehicule introuvable"));
-        VehiculeMapper.updateEntityFromDto(vehicule,dto);
-        return VehiculeMapper.toDto(VehiculeRepository.save(vehicule));
+    public VehiculeDTO update(Long id, VehiculeDTO dto) {
+        Vehicule vehicule = vehiculeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("vehicule introuvable"));
+        vehiculeMapper.updateEntityFromDto(dto, vehicule);
+        return vehiculeMapper.toDto(vehiculeRepository.save(vehicule));
     }
-    public VehiculeDTO delete(Long id){
-        return VehiculeRepository.deleteById(id);
+
+    public void delete(Long id) {
+        vehiculeRepository.deleteById(id);
     }
 
 }
