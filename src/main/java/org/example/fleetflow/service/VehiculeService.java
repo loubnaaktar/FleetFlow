@@ -39,6 +39,7 @@ public class VehiculeService {
 
     public VehiculeDTO update(Long id ,VehiculeDTO dto){
         Vehicule vehicule = VehiculeRepository.findById(id)
+
                 .orElseThrow(()-> new RuntimeException("vehicule introuvable"));
         VehiculeMapper.updateEntityFromDto(vehicule,dto);
         return VehiculeMapper.toDto(VehiculeRepository.save(vehicule));
