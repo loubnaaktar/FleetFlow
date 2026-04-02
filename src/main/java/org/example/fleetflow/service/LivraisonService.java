@@ -21,10 +21,10 @@ import static org.example.fleetflow.model.Vehicule.StatutVehicule.EN_LIVRAISON;
 @AllArgsConstructor
 public class LivraisonService {
     private final LivraisonRepository livraisonRepository;
-    private ClientRepository clientRepository;
-    private LivraisonMapper livraisonMapper;
-    private ChauffeurRepository chauffeurRepository;
-    private VehiculeRepository vehiculeRepository;
+    private final ClientRepository clientRepository;
+    private final LivraisonMapper livraisonMapper;
+    private final ChauffeurRepository chauffeurRepository;
+    private final VehiculeRepository vehiculeRepository;
 
 public LivraisonDTO ajouterLivraison(long idClient){
 Client client = clientRepository.findById(idClient).orElse(null);
