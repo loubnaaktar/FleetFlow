@@ -1,23 +1,18 @@
 package org.example.fleetflow.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.example.fleetflow.model.Livraison;
+import lombok.*;
 
-import java.util.List;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
-public class ChauffeurDTO {
-    private long id ;
+public class ChauffeurDTO implements Serializable {
+    private Long id ;
     private String nom;
     private String telephone;
     private String permisType;
-    private boolean disponible;
-    private List<Livraison> livraisons ;
+    private Boolean disponible;
+//    private List<Livraison> livraisons ;
 }

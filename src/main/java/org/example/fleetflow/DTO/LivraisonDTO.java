@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 
 public class LivraisonDTO {
-    private long id;
+    private Long id;
     private LocalDateTime dateLivraison;
     private String adresseDepart;
     private String adresseDestination;

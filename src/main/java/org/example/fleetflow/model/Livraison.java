@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Livraison {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private LocalDateTime dateLivraison;
     private String adresseDepart;
     private String adresseDestination;
