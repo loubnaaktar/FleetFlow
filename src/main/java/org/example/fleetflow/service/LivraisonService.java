@@ -40,7 +40,7 @@ Livraison livraison = livraisonRepository.findById(idLivraison).orElseThrow(() -
 Chauffeur chauffeur = chauffeurRepository.findById(idChauffeur).orElseThrow(()-> new RuntimeException("chauffeur introuvable"));
 Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElseThrow(() -> new RuntimeException("vehicule introuvable"));
 
-if(!chauffeur.isDisponible()){
+if(!chauffeur.getDisponible()){
     throw new RuntimeException("aucun chauffeur est dispo");
 }
 if(!vehicule.getStatut().equals("disponible")){
