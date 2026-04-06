@@ -12,4 +12,5 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 
 
     List<Chauffeur> findByDisponible(boolean disponible);
+
 }
