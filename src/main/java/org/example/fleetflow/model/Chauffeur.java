@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "chaffeur")
+@Table(name = "chauffeur")
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,11 +20,11 @@ import java.util.List;
 public class Chauffeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nom;
     private String telephone;
     private String permisType;
-    private boolean disponible;
+    private Boolean disponible;
 
     @OneToMany(mappedBy = "chauffeur")
     List<Livraison> livraisons = new ArrayList<>();
