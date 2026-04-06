@@ -29,7 +29,7 @@ public class ChauffeurController {
         chauffeurService.supprimerChauffeur(id);
     }
 
-  @PostMapping("/modifier/{id}")
+  @PutMapping("/modifier/{id}")
     public ChauffeurDTO modifierChauffeur(@PathVariable long id, @RequestBody ChauffeurDTO chauffeurDTO){
        return chauffeurService.modifierChauffeur(id,chauffeurDTO);
   }

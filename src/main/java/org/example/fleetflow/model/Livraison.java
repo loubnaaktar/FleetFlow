@@ -18,13 +18,22 @@ import java.time.LocalDateTime;
 public class Livraison {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private LocalDateTime dateLivraison;
     private String adresseDepart;
     private String adresseDestination;
-    private String Statut;
+    private StatutLivraison Statut;
 
     @ManyToOne
     private Chauffeur chauffeur;
 
+    @ManyToOne
+    private Client client;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
+    public enum StatutLivraison{
+        ENATTENTE,ENCOURS, LIVREE
+    }
 }
