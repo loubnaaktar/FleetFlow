@@ -13,8 +13,4 @@ public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 
     List<Chauffeur> findByDisponible(boolean disponible);
 
-    // fonctions challenge
-    List<Chauffeur> findAllByPermisType(String permisType);
-    List<Chauffeur> findAllByOrderByNomAsc();
-
 }
