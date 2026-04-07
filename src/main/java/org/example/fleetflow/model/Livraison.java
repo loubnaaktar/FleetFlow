@@ -22,7 +22,7 @@ public class Livraison {
     private LocalDateTime dateLivraison;
     private String adresseDepart;
     private String adresseDestination;
-    private StatutLivraison Statut;
+    private StatutLivraison statut;
 
     @ManyToOne
     private Chauffeur chauffeur;

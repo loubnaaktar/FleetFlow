@@ -1,6 +1,7 @@
 package org.example.fleetflow.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 
@@ -25,9 +26,11 @@ public class Vehicule {
     private StatutVehicule statut= StatutVehicule.DISPONIBLE;
 //   @OneToOne(mappedBy = "vehicule")
 //    private Livraison livraison;
+    @NotNull(message = "le type disponible est obligatoire")
    public enum TypeVehicule{
        CAMION,FOURGON,CAMIONETTE
    }
+   @NotNull(message = "le statut disponible est obligatoire")
    public enum StatutVehicule{
        DISPONIBLE,EN_LIVRAISON,MAINTENANCE
    }
