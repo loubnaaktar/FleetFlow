@@ -15,3 +15,17 @@ CREATE TABLE livraison(
     chauffeur_id BIGINT,
     client_id BIGINT
 );
+CREATE TABLE client (
+    id BIGINT AUTO_INCREMENT primary key,
+    nom VARCHAR(100) NOT NULL,
+     prenom VARCHAR(100) NOT NULL,
+     email VARCHAR(150) NOT NULL UNIQUE,
+     telephone VARCHAR(20)
+);
+CREATE TABLE chauffeur (
+                           id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                           nom VARCHAR(100) NOT NULL,
+                           telephone VARCHAR(20),
+                           permis_type VARCHAR(50),
+                           disponible BOOLEAN
+);
