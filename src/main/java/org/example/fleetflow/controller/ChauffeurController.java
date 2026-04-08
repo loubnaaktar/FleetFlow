@@ -1,5 +1,6 @@
 package org.example.fleetflow.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.fleetflow.DTO.ChauffeurDTO;
 import org.example.fleetflow.model.Chauffeur;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Valid
 @RequestMapping("/api/chauffeures")
 
 @AllArgsConstructor
