@@ -7,6 +7,7 @@ import org.example.fleetflow.mapper.VehiculeMapper;
 import org.example.fleetflow.model.Vehicule;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class VehiculeService {
         return vehiculeRepository.findByStatut(Vehicule.StatutVehicule.DISPONIBLE)
                 .stream().map(vehiculeMapper::toDto).collect(Collectors.toList());
     }
+
 
     public List<VehiculeDTO> getAll() {
         return vehiculeRepository.findAll().stream().map(vehiculeMapper::toDto)

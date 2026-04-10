@@ -11,5 +11,8 @@ import lombok.Setter;
         private String email;
         private String ville;
         private String  telephone;
+
+        private long nombreLivClient;
+
     }
 

@@ -10,8 +10,7 @@ CREATE TABLE livraison(
     date_livraison DATETIME,
     adresse_depart VARCHAR(255) NOT NULL,
     adresse_destination VARCHAR(255) NOT NULL,
-    statut VARCHAR(50),
-
+    statut ENUM('ENATTENTE','ENCOURS','LIVREE') NOT NULL,
     chauffeur_id BIGINT,
     client_id BIGINT
 );
@@ -19,10 +18,11 @@ CREATE TABLE client (
     id BIGINT AUTO_INCREMENT primary key,
     nom VARCHAR(100) NOT NULL,
      prenom VARCHAR(100) NOT NULL,
+     ville VARCHAR(100) NOT NULL,
      email VARCHAR(150) NOT NULL UNIQUE,
      telephone VARCHAR(20)
 );
-CREATE TABLE chauffeur (
+CREATE TABLE Chauffeur (
                            id BIGINT AUTO_INCREMENT PRIMARY KEY,
                            nom VARCHAR(100) NOT NULL,
                            telephone VARCHAR(20),

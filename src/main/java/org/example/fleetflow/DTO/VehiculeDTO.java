@@ -16,4 +16,7 @@ public class VehiculeDTO {
     private Integer capacite;
     @NotNull(message = "le statut disponible est obligatoire")
     private Vehicule.StatutVehicule statut;
+
+    private long total;
+
 }

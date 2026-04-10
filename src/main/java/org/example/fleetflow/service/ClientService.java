@@ -23,11 +23,11 @@ public class ClientService {
 
 
     public List<ClientDTO> getAllClients() {
-        return mapper.toDTOList( clientRepository.findAll());
+        return mapper.toDTOList(clientRepository.findAll());
     }
 
 
-    public ClientDTO Modifierclient(Long id,ClientDTO clientDTO) {
+    public ClientDTO Modifierclient(Long id, ClientDTO clientDTO) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Client " + id + " n'existe pas"));
         client.setNom(clientDTO.getNom());
@@ -41,6 +41,17 @@ public class ClientService {
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
     }
+
+    public List<ClientDTO> getLivraisonClient() {
+        long nombreLivClient = clientRepository.count();
+        return clientRepository.findAll().stream().map(client -> {
+            var dto = mapper.toDTO(client);
+            dto.setNombreLivClient(nombreLivClient);
+            return dto;
+        }).toList();
+    }
+
+
 }
 
 

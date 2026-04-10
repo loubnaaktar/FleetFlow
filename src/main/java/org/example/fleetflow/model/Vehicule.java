@@ -6,11 +6,9 @@ import lombok.*;
 
 
 @Entity
-@Table(name="vehicules")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Vehicule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +22,6 @@ public class Vehicule {
    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatutVehicule statut= StatutVehicule.DISPONIBLE;
-//   @OneToOne(mappedBy = "vehicule")
-//    private Livraison livraison;
     @NotNull(message = "le type disponible est obligatoire")
    public enum TypeVehicule{
        CAMION,FOURGON,CAMIONETTE

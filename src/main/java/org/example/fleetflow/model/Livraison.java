@@ -22,6 +22,8 @@ public class Livraison {
     private LocalDateTime dateLivraison;
     private String adresseDepart;
     private String adresseDestination;
+
+    @Enumerated(EnumType.STRING)
     private StatutLivraison statut;
 
     @ManyToOne

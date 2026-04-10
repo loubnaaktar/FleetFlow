@@ -10,13 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "chauffeur")
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Chauffeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
