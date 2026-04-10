@@ -2,9 +2,7 @@ package org.example.fleetflow.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-//import lombok.Builder;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name="vehicules")
@@ -21,7 +19,7 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TypeVehicule type;
-    private Integer  capacite;
+    private Integer   capacite;
    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatutVehicule statut= StatutVehicule.DISPONIBLE;
