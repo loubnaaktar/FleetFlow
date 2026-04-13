@@ -19,7 +19,7 @@ public class ChauffeurDTO implements Serializable {
     private String telephone;
     @NotBlank(message = "Le type de permis est obligatoire")
     private String permisType;
-    @NotBlank(message = "Le statut disponible est obligatoire")
+    @NotNull(message = "Le statut disponible est obligatoire")
     private Boolean disponible;
 //    private List<Livraison> livraisons ;
 }
