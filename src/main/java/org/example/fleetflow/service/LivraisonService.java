@@ -26,12 +26,14 @@ public class LivraisonService {
     private final ChauffeurRepository chauffeurRepository;
     private final VehiculeRepository vehiculeRepository;
 
-public LivraisonDTO ajouterLivraison(long idClient){
-Client client = clientRepository.findById(idClient).orElse(null);
+public LivraisonDTO ajouterLivraison(long idClient,LivraisonDTO dto){
+Client client = clientRepository.findById(idClient).orElseThrow(() -> new RuntimeException("Client not found"));
 Livraison livraison = new Livraison();
 livraison.setClient(client);
-Livraison livr = livraisonRepository.save(livraison);
-return livraisonMapper.toDTO(livr);
+livraison.setAdresseDepart(dto.getAdresseDepart());
+livraison.setAdresseDestination(dto.getAdresseDestination());
+livraison.setStatut(Livraison.StatutLivraison.ENATTENTE);
+return livraisonMapper.toDTO(livraisonRepository.save(livraison));
 }
 
 
@@ -67,4 +69,5 @@ public LivraisonDTO modifierStatutLivraison(long idLivraison, Livraison.StatutLi
     Livraison liv = livraisonRepository.save(livraison);
     return livraisonMapper.toDTO(liv);
 }
+
 }

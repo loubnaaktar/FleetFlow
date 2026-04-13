@@ -21,5 +21,6 @@ import lombok.Setter;
         private String ville;
     @NotBlank(message ="telephone est obligatoire" )
         private String  telephone;
+        private Long nombre;
     }
 
