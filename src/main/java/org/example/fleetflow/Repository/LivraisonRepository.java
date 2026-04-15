@@ -1,8 +1,6 @@
 package org.example.fleetflow.Repository;
 
-import org.example.fleetflow.model.Client;
 import org.example.fleetflow.model.Livraison;
-import org.example.fleetflow.model.Vehicule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,16 +10,13 @@ import java.util.List;
 
 @Repository
 public interface LivraisonRepository extends JpaRepository<Livraison, Long> {
-    List<Livraison> findByStatut(String statut);
+    List<Livraison> findByStatut(Livraison.StatutLivraison statut);
+   List<Livraison> findByClientId(Long id);
 
-    List<Livraison> findByClientId(Long id);
-    Long countLivraisonByClientId(Long clientId);
-    List<Livraison> findAllByVehicule_Id(Long vehiculeId);
-    @Query("select l from Livraison l where l.dateLivraison BETWEEN :date1 AND :date2")
-    List<Livraison> findLivraisonBetweenTwoDate(LocalDateTime date1, LocalDateTime date2);
 
-    @Query("select l from Livraison l where l.adresseDestination = :ville")
-    List<Livraison> findLivraisonByVille(String ville);
-
+   @Query("select l from Livraison l where l.dateLivraison BETWEEN :date1 AND :date2")
+   List<Livraison> findLivraisonBetweenTwoDate(LocalDateTime date1,LocalDateTime date2);
+   @Query("select l from Livraison l where l.adresseDestination = :ville")
+   List<Livraison> findLivraisonByVille(String ville);
 
 }
