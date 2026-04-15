@@ -20,8 +20,4 @@ public class Client {
     private String email;
     private String ville;
     private String  telephone;
-
-    public Client(Long id) {
-        this.id = id;
-    }
 }
