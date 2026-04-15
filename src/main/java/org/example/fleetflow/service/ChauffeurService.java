@@ -1,6 +1,7 @@
 package org.example.fleetflow.service;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.example.fleetflow.DTO.ChauffeurDTO;
 import org.example.fleetflow.Repository.ChauffeurRepository;
 import org.example.fleetflow.mapper.ChauffeurMapper;
@@ -11,9 +12,11 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+
+
 public class ChauffeurService {
+
 private final ChauffeurRepository chauffeurRepository;
-//private final ChauffeurMapper chauffeurMapper;
 private final ChauffeurMapper mapper;
 
 public ChauffeurDTO ajouterChauffeur(ChauffeurDTO chauffeurDTO){
@@ -43,4 +46,8 @@ public void supprimerChauffeur(long id){
     chauffeurRepository.delete(chauffeur);
 }
 
+//public List<ChauffeurDTO> allChauffeurs(){
+//    List<Chauffeur> chauffeurs = chauffeurRepository.findAll();
+//    return mapper.toDTO(chauffeurs);
+//}
 }

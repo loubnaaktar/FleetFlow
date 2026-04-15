@@ -13,8 +13,10 @@ import org.example.fleetflow.model.Livraison;
 import org.example.fleetflow.model.Vehicule;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.example.fleetflow.model.Vehicule.StatutVehicule.DISPONIBLE;
 import static org.example.fleetflow.model.Vehicule.StatutVehicule.EN_LIVRAISON;
 
 @Service
@@ -32,6 +34,7 @@ Livraison livraison = new Livraison();
 livraison.setClient(client);
 livraison.setAdresseDepart(dto.getAdresseDepart());
 livraison.setAdresseDestination(dto.getAdresseDestination());
+livraison.setDateLivraison(LocalDateTime.now());
 livraison.setStatut(Livraison.StatutLivraison.ENATTENTE);
 return livraisonMapper.toDTO(livraisonRepository.save(livraison));
 }
@@ -45,7 +48,7 @@ Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElseThrow(() -> ne
 if(!chauffeur.getDisponible()){
     throw new RuntimeException("aucun chauffeur est dispo");
 }
-if(!vehicule.getStatut().equals("disponible")){
+if(!vehicule.getStatut().equals(DISPONIBLE)){
     throw new RuntimeException("aucune vehicule est dispo");
 }
 livraison.setChauffeur(chauffeur);
