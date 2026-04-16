@@ -9,4 +9,5 @@ ALTER TABLE vehicule
 
 ALTER TABLE livraison
     ADD CONSTRAINT fk_chauffeur FOREIGN KEY (chauffeur_id) REFERENCES chauffeur(id),
-    ADD CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES client(id);
+    ADD CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES client(id),
+    ADD CONSTRAINT fk_vehicule FOREIGN KEY (vehicule_id) REFERENCES vehicule(id);

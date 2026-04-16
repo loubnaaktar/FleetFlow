@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Valid
 @RequestMapping("/api/livraison")
 @RequiredArgsConstructor
 public class LivraisonController {
@@ -19,12 +18,12 @@ public class LivraisonController {
     private final LivraisonService livraisonService;
 
     @PostMapping
-    public LivraisonDTO create(@RequestParam long idClient,@RequestBody LivraisonDTO dto) {
+    public LivraisonDTO create(@Valid @RequestParam long idClient,@RequestBody LivraisonDTO dto) {
         return livraisonService.ajouterLivraison(idClient,dto);
     }
 
     @PutMapping("/{id}/assigner")
-    public LivraisonDTO assigner(
+    public LivraisonDTO assigner(@Valid
             @PathVariable long id,
             @RequestParam long idChauffeur,
             @RequestParam long idVehicule){
@@ -38,7 +37,7 @@ public class LivraisonController {
     }
 
     @PutMapping("/{id}/statut")
-    public LivraisonDTO updateStatut(
+    public LivraisonDTO updateStatut(@Valid
             @PathVariable long id,
             @RequestParam Livraison.StatutLivraison statut){
         return livraisonService.modifierStatutLivraison(id, statut);

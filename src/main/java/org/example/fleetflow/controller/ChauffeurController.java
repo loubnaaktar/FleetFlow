@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Valid
 @RequestMapping("/api/chauffeures")
 
 @AllArgsConstructor
@@ -22,7 +21,7 @@ public class ChauffeurController {
     }
 
     @PostMapping("/ajouter")
-        public ChauffeurDTO ajouterChauffeur(@RequestBody ChauffeurDTO chauffeurDTO){
+        public ChauffeurDTO ajouterChauffeur(@Valid @RequestBody ChauffeurDTO chauffeurDTO){
         return chauffeurService.ajouterChauffeur(chauffeurDTO);
     }
 
@@ -32,7 +31,7 @@ public class ChauffeurController {
     }
 
   @PutMapping("/modifier/{id}")
-    public ChauffeurDTO modifierChauffeur(@PathVariable long id, @RequestBody ChauffeurDTO chauffeurDTO){
+    public ChauffeurDTO modifierChauffeur(@Valid @PathVariable long id, @RequestBody ChauffeurDTO chauffeurDTO){
        return chauffeurService.modifierChauffeur(id,chauffeurDTO);
   }
 

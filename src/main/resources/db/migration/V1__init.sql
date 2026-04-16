@@ -9,7 +9,6 @@ CREATE TABLE vehicule (
 CREATE TABLE client (
                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
                         nom VARCHAR(100) NOT NULL,
-                        prenom VARCHAR(100) NOT NULL,
                         ville VARCHAR(100) NOT NULL,
                         email VARCHAR(150) NOT NULL UNIQUE,
                         telephone VARCHAR(20)
@@ -30,5 +29,6 @@ CREATE TABLE livraison (
                            adresse_destination VARCHAR(255) NOT NULL,
                            statut ENUM('ENATTENTE','ENCOURS','LIVREE') NOT NULL,
                            chauffeur_id BIGINT,
-                           client_id BIGINT
+                           client_id BIGINT,
+                            vehicule_id BIGINT
 );
