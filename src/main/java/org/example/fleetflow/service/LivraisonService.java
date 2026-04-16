@@ -26,13 +26,31 @@ public class LivraisonService {
     private final ChauffeurRepository chauffeurRepository;
     private final VehiculeRepository vehiculeRepository;
 
-public LivraisonDTO ajouterLivraison(long idClient){
-Client client = clientRepository.findById(idClient).orElse(null);
-Livraison livraison = new Livraison();
-livraison.setClient(client);
-Livraison livr = livraisonRepository.save(livraison);
-return livraisonMapper.toDTO(livr);
-}
+    public LivraisonDTO ajouterLivraison(LivraisonDTO dto) {
+
+        Client client = clientRepository.findById(dto.getClientId())
+                .orElseThrow(() -> new RuntimeException("Client not found"));
+
+        Chauffeur chauffeur = chauffeurRepository.findById(dto.getChauffeurId())
+                .orElseThrow(() -> new RuntimeException("Chauffeur not found"));
+
+        Vehicule vehicule = vehiculeRepository.findById(dto.getVehiculeId())
+                .orElseThrow(() -> new RuntimeException("Vehicule not found"));
+
+        Livraison livraison = new Livraison();
+        livraison.setClient(client);
+        livraison.setChauffeur(chauffeur);
+        livraison.setVehicule(vehicule);
+
+        livraison.setDateLivraison(dto.getDateLivraison());
+        livraison.setAdresseDepart(dto.getAdresseDepart());
+        livraison.setAdresseDestination(dto.getAdresseDestination());
+        livraison.setStatut(dto.getStatut());
+
+        Livraison saved = livraisonRepository.save(livraison);
+
+        return livraisonMapper.toDTO(saved);
+    }
 
 
 public LivraisonDTO assignerChauffeurVehicule(long idLivraison, long idChauffeur, long idVehicule){

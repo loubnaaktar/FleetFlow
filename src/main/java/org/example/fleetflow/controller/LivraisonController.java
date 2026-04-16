@@ -16,9 +16,10 @@ public class LivraisonController {
 
     private final LivraisonService livraisonService;
 
-    @PostMapping
-    public LivraisonDTO create(@RequestParam long idClient) {
-        return livraisonService.ajouterLivraison(idClient);
+
+    @PostMapping("/livraisons")
+    public LivraisonDTO create(@RequestBody LivraisonDTO dto) {
+        return livraisonService.ajouterLivraison(dto);
     }
 
     @PutMapping("/{id}/assigner")
