@@ -23,7 +23,7 @@ public class ClientController {
         return clientService.getAllClients();
     }
     @PutMapping("/{id}")
-    public void ModifierClient(@PathVariable Long id,@Valid @RequestBody ClientDTO clientDTO){
+    public void ModifierClient(@Valid @PathVariable Long id,ClientDTO clientDTO){
         clientService.Modifierclient(id,clientDTO);
     }
     @DeleteMapping("/{id}")

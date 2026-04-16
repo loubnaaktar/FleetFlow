@@ -31,19 +31,7 @@ public class ClientService {
 
     public List<ClientDTO> getAllClients() {
 
-        List<Client>  clients = clientRepository.findAll();
-        List<ClientDTO> dtos = new ArrayList<>();
-
-        for(Client c : clients){
-
-            Long nombre= livraisonRepository.countLivraisonByClientId(c.getId());
-         ClientDTO  dto = mapper.toDTO(c);
-         dto.setNombre(nombre);
-            dtos.add(dto);
-        }
-
-        return dtos;
-
+        return clientRepository.findAll().stream().map(mapper::toDTO).toList();
     }
 
 
