@@ -1,5 +1,6 @@
 package org.example.fleetflow.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.fleetflow.DTO.ChauffeurDTO;
 import org.example.fleetflow.model.Chauffeur;
@@ -20,7 +21,7 @@ public class ChauffeurController {
     }
 
     @PostMapping("/ajouter")
-        public ChauffeurDTO ajouterChauffeur(@RequestBody ChauffeurDTO chauffeurDTO){
+    public ChauffeurDTO ajouterChauffeur(@Valid @RequestBody ChauffeurDTO chauffeurDTO){
         return chauffeurService.ajouterChauffeur(chauffeurDTO);
     }
 
@@ -29,10 +30,9 @@ public class ChauffeurController {
         chauffeurService.supprimerChauffeur(id);
     }
 
-  @PutMapping("/modifier/{id}")
-    public ChauffeurDTO modifierChauffeur(@PathVariable long id, @RequestBody ChauffeurDTO chauffeurDTO){
-       return chauffeurService.modifierChauffeur(id,chauffeurDTO);
-  }
-
+    @PutMapping("/modifier/{id}")
+    public ChauffeurDTO modifierChauffeur(@Valid @PathVariable long id, @RequestBody ChauffeurDTO chauffeurDTO){
+        return chauffeurService.modifierChauffeur(id,chauffeurDTO);
+    }
 
 }

@@ -1,5 +1,6 @@
 package org.example.fleetflow.controller;
 
+import jakarta.validation.Valid;
 import org.example.fleetflow.DTO.ClientDTO;
 import org.example.fleetflow.model.Client;
 import org.example.fleetflow.service.ClientService;
@@ -14,7 +15,7 @@ public class ClientController {
     @Autowired
     ClientService clientService;
     @PostMapping
-    public void AjouterClient(ClientDTO client){
+    public void AjouterClient(@Valid @RequestBody ClientDTO client){
         clientService.addClient(client);
     }
     @GetMapping
@@ -22,7 +23,7 @@ public class ClientController {
         return clientService.getAllClients();
     }
     @PutMapping("/{id}")
-    public void ModifierClient(@PathVariable Long id,ClientDTO clientDTO){
+    public void ModifierClient(@Valid @PathVariable Long id, @RequestBody ClientDTO clientDTO){
         clientService.Modifierclient(id,clientDTO);
     }
     @DeleteMapping("/{id}")

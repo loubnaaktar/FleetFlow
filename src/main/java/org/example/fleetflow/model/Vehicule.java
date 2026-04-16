@@ -13,20 +13,25 @@ public class Vehicule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true,nullable = false)
     private String matricule;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @NotNull(message = "le type est obligatoire")
     private TypeVehicule type;
+
     private Integer   capacite;
+
    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @NotNull(message = "le statut est obligatoire")
     private StatutVehicule statut= StatutVehicule.DISPONIBLE;
-    @NotNull(message = "le type disponible est obligatoire")
+
    public enum TypeVehicule{
        CAMION,FOURGON,CAMIONETTE
    }
-   @NotNull(message = "le statut disponible est obligatoire")
    public enum StatutVehicule{
        DISPONIBLE,EN_LIVRAISON,MAINTENANCE
    }

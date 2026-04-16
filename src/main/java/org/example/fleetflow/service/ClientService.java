@@ -2,6 +2,7 @@ package org.example.fleetflow.service;
 
 import org.example.fleetflow.DTO.ClientDTO;
 import org.example.fleetflow.Repository.ClientRepository;
+import org.example.fleetflow.Repository.LivraisonRepository;
 import org.example.fleetflow.mapper.ClientMapper;
 import org.example.fleetflow.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +43,13 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
+    @Autowired
+    private LivraisonRepository livraisonRepository;
+
     public List<ClientDTO> getLivraisonClient() {
-        long nombreLivClient = clientRepository.count();
         return clientRepository.findAll().stream().map(client -> {
             var dto = mapper.toDTO(client);
-            dto.setNombreLivClient(nombreLivClient);
+            dto.setNombreLivClient(livraisonRepository.findByClientId(client.getId()).size());
             return dto;
         }).toList();
     }

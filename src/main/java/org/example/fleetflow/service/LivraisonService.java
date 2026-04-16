@@ -14,6 +14,7 @@ import org.example.fleetflow.model.Vehicule;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.example.fleetflow.model.Vehicule.StatutVehicule.EN_LIVRAISON;
 
@@ -26,12 +27,13 @@ public class LivraisonService {
     private final ChauffeurRepository chauffeurRepository;
     private final VehiculeRepository vehiculeRepository;
 
-public LivraisonDTO ajouterLivraison(long idClient){
-Client client = clientRepository.findById(idClient).orElse(null);
-Livraison livraison = new Livraison();
-livraison.setClient(client);
-Livraison livr = livraisonRepository.save(livraison);
-return livraisonMapper.toDTO(livr);
+public LivraisonDTO ajouterLivraison(long idClient, LivraisonDTO livraisonDTO){
+    Client client = clientRepository.findById(idClient).orElseThrow(() -> new RuntimeException("Client introuvable"));
+    Livraison livraison = livraisonMapper.toEntity(livraisonDTO);
+    livraison.setClient(client);
+    livraison.setStatut(Livraison.StatutLivraison.ENATTENTE);
+    Livraison livr = livraisonRepository.save(livraison);
+    return livraisonMapper.toDTO(livr);
 }
 
 
@@ -43,7 +45,7 @@ Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElseThrow(() -> ne
 if(!chauffeur.getDisponible()){
     throw new RuntimeException("aucun chauffeur est dispo");
 }
-if(!vehicule.getStatut().equals("disponible")){
+if(!vehicule.getStatut().equals(Vehicule.StatutVehicule.DISPONIBLE)){
     throw new RuntimeException("aucune vehicule est dispo");
 }
 livraison.setChauffeur(chauffeur);
@@ -67,4 +69,5 @@ public LivraisonDTO modifierStatutLivraison(long idLivraison, Livraison.StatutLi
     Livraison liv = livraisonRepository.save(livraison);
     return livraisonMapper.toDTO(liv);
 }
+
 }

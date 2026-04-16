@@ -7,7 +7,6 @@ import org.example.fleetflow.mapper.VehiculeMapper;
 import org.example.fleetflow.model.Vehicule;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +21,7 @@ public class VehiculeService {
         Vehicule saved = vehiculeRepository.save(vehicule);
         return vehiculeMapper.toDto(saved);
     }
+
 
     public List<VehiculeDTO> getVehiculesDisponible() {
         return vehiculeRepository.findByStatut(Vehicule.StatutVehicule.DISPONIBLE)
@@ -51,4 +51,8 @@ public class VehiculeService {
         vehiculeRepository.deleteById(id);
     }
 
+    public List<VehiculeDTO> getVehiculeByCapacite(Integer capacite){
+        return vehiculeRepository.findByCapaciteGreaterThan(capacite).stream()
+                .map(vehicule -> vehiculeMapper.toDto(vehicule)).toList();
+    }
 }
