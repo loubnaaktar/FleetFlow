@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "chauffeur")
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,5 +28,4 @@ public class Chauffeur {
 
     @OneToMany(mappedBy = "chauffeur")
     List<Livraison> livraisons = new ArrayList<>();
-
 }
