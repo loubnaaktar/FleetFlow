@@ -10,93 +10,68 @@ import org.example.fleetflow.model.Chauffeur;
 import org.example.fleetflow.model.Client;
 import org.example.fleetflow.model.Livraison;
 import org.example.fleetflow.model.Vehicule;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
-import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.example.fleetflow.model.Vehicule.StatutVehicule.DISPONIBLE;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class LivraisonServiceTest {
 
-@Mock
+    @Mock
     LivraisonRepository livraisonRepository;
-@Mock
+    @Mock
     LivraisonMapper livraisonMapper;
-@Mock
+    @Mock
     ClientRepository clientRepository;
-@Mock
+    @Mock
     ChauffeurRepository chauffeurRepository;
-@Mock
+    @Mock
     VehiculeRepository vehiculeRepository;
-@InjectMocks
+    @InjectMocks
     LivraisonService livraisonService;
 
 
-
     @Test
-    void ajouterLivraison() {
+    public void ajouterLivraison() {
         Client client = new Client();
         client.setId(1L);
-        client.setNom("Salma");
+        client.setNom("ahmed");
 
-        Livraison livraison = new Livraison();
-//        livraison.setDateLivraison(LocalDateTime.now());
-//        livraison.setAdresseDepart("BM");
-//        livraison.setAdresseDestination("Rabat");
+        LivraisonDTO inputDTO = new LivraisonDTO();
+        inputDTO.setAdresseDepart("casa");
+        inputDTO.setAdresseDestination("rabat");
 
-        LivraisonDTO livraisonDTO = new LivraisonDTO();
-        livraisonDTO.setDateLivraison(LocalDateTime.now());
-        livraisonDTO.setAdresseDepart("BM");
-        livraisonDTO.setAdresseDestination("Rabat");
-        livraisonDTO.setClient(client);
+        Livraison savedLivraison = new Livraison();
+        savedLivraison.setId(1L);
+        savedLivraison.setAdresseDepart("casa");
+        savedLivraison.setAdresseDestination("rabat");
+        savedLivraison.setClient(client);
+        savedLivraison.setStatut(Livraison.StatutLivraison.ENATTENTE);
+
+        LivraisonDTO expectedDTO = new LivraisonDTO();
+        expectedDTO.setId(1L);
+        expectedDTO.setAdresseDepart("casa");
+        expectedDTO.setAdresseDestination("rabat");
+        expectedDTO.setStatut("ENATTENTE");
 
         when(clientRepository.findById(1L)).thenReturn(Optional.of(client));
-        when(livraisonRepository.save(livraison)).thenReturn(new Livraison());
-        when(livraisonMapper.toDTO(livraison)).thenReturn(livraisonDTO);
+        when(livraisonRepository.save(any(Livraison.class))).thenReturn(savedLivraison);
+        when(livraisonMapper.toDTO(any(Livraison.class))).thenReturn(expectedDTO);
 
-        LivraisonDTO resultat = livraisonService.ajouterLivraison(1L,livraisonDTO);
-        assertEquals(Livraison.StatutLivraison.ENATTENTE,resultat.getStatut());
+        LivraisonDTO livraisonResponse = livraisonService.ajouterLivraison(1L, inputDTO);
+
+        assertNotNull(livraisonResponse);
+        assertEquals(expectedDTO.getStatut(), livraisonResponse.getStatut());
+        assertEquals(expectedDTO.getAdresseDepart(), livraisonResponse.getAdresseDepart());
     }
-
-
-//    @Test
-//    void ajouterLivraison() {
-//
-//        Client client = new Client();
-//        client.setId(1L);
-//        when(clientRepository.findById(1L))
-//                .thenReturn(Optional.of(client));
-//
-//        LivraisonDTO savedLivraison = new LivraisonDTO();
-//        savedLivraison.setAdresseDepart("BM");
-//        savedLivraison.setAdresseDestination("Rabat");
-//        savedLivraison.setClient(client);
-//
-////        savedLivraison.setStatut(Livraison.StatutLivraison.ENATTENTE);
-//    Livraison liv = livraisonMapper.toEntity(savedLivraison);
-//        when(livraisonRepository.save(any(Livraison.class)))
-//                .thenReturn(liv);
-////
-//        when(livraisonMapper.toDTO(any(Livraison.class)))
-//                .thenReturn(savedLivraison);
-//
-//        LivraisonDTO result = livraisonService.ajouterLivraison(1L,savedLivraison);
-//
-////        assertNotNull(result);
-//        assertEquals(Livraison.StatutLivraison.ENATTENTE.name(),result.getStatut());
-//    }
 
     @Test
     void assignerChauffeurVehicule() {
