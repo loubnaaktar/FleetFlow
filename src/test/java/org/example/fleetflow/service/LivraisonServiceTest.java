@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -103,5 +104,34 @@ class LivraisonServiceTest {
 
         assertEquals("ahmed",resultat.getChauffeur().getNom());
 
+    }
+
+    @Test
+    void modifierStatutLivraison() {
+
+
+        Livraison livraison = new Livraison();
+        livraison.setId(1L);
+        livraison.setStatut(Livraison.StatutLivraison.ENATTENTE);
+
+        Livraison mod = new Livraison();
+        mod.setId(1L);
+        mod.setStatut(Livraison.StatutLivraison.LIVREE);
+
+        LivraisonDTO livraisonDTO = new LivraisonDTO();
+        livraisonDTO.setStatut(String.valueOf(Livraison.StatutLivraison.LIVREE));
+
+
+        when(livraisonRepository.findById(1L)).thenReturn(Optional.of(livraison));
+
+
+        when(livraisonRepository.save(Mockito.any(Livraison.class))).thenReturn(mod);
+
+
+        when(livraisonMapper.toDTO(mod)).thenReturn(livraisonDTO);
+
+        LivraisonDTO dto = livraisonService.modifierStatutLivraison(1L, Livraison.StatutLivraison.LIVREE);
+
+        assertEquals(Livraison.StatutLivraison.LIVREE, dto.getStatut());
     }
 }

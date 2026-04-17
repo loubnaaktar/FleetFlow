@@ -49,4 +49,9 @@ public class VehiculeService {
         vehiculeRepository.deleteById(id);
     }
 
+    public List<VehiculeDTO> getVehiculeByCapacite(Integer capacite){
+        return vehiculeRepository.findByCapaciteGreaterThan(capacite).stream()
+                .map(vehicule -> vehiculeMapper.toDto(vehicule)).toList();
+    }
+
 }

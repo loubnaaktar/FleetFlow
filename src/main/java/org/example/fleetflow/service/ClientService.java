@@ -50,7 +50,16 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
+    public ClientDTO addClientNotExist(ClientDTO clientDTO) {
 
+        Client client = clientRepository.findByEmail(clientDTO.getEmail());
+
+        if (client != null) {
+            throw new RuntimeException("Email déjà existant");
+        }
+
+        return mapper.toDTO(clientRepository.save(mapper.toEntity(clientDTO)));
+    }
 }
 
 
