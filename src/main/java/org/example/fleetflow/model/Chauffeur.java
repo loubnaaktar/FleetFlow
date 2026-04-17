@@ -26,6 +26,7 @@ public class Chauffeur {
     private String permisType;
     private Boolean disponible;
 
+
     @OneToMany(mappedBy = "chauffeur")
     List<Livraison> livraisons = new ArrayList<>();
 }
