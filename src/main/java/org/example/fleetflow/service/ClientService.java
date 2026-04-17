@@ -13,15 +13,14 @@ import java.util.List;
 @Service
 public class ClientService {
 
+    private final ClientRepository clientRepository;
+    private final LivraisonRepository livraisonRepository;
+    private final ClientMapper mapper;
 
-    @Autowired
-    private ClientRepository clientRepository;
-    private LivraisonRepository livraisonRepository;
-    @Autowired
-    private ClientMapper mapper;
-
-    public ClientService(LivraisonRepository livraisonRepository) {
+    public ClientService(ClientRepository clientRepository, LivraisonRepository livraisonRepository, ClientMapper mapper) {
+        this.clientRepository = clientRepository;
         this.livraisonRepository = livraisonRepository;
+        this.mapper = mapper;
     }
 
     public ClientDTO addClient(ClientDTO clientDTO) {
