@@ -61,7 +61,7 @@ class LivraisonServiceTest {
         expectedDTO.setId(1L);
         expectedDTO.setAdresseDepart("casa");
         expectedDTO.setAdresseDestination("rabat");
-        expectedDTO.setStatut("ENATTENTE");
+        expectedDTO.setStatut(Livraison.StatutLivraison.ENATTENTE);
 
         when(clientRepository.findById(1L)).thenReturn(Optional.of(client));
         when(livraisonRepository.save(any(Livraison.class))).thenReturn(savedLivraison);
@@ -119,7 +119,7 @@ class LivraisonServiceTest {
         mod.setStatut(Livraison.StatutLivraison.LIVREE);
 
         LivraisonDTO livraisonDTO = new LivraisonDTO();
-        livraisonDTO.setStatut(String.valueOf(Livraison.StatutLivraison.LIVREE));
+        livraisonDTO.setStatut(Livraison.StatutLivraison.LIVREE);
 
 
         when(livraisonRepository.findById(1L)).thenReturn(Optional.of(livraison));
@@ -132,6 +132,6 @@ class LivraisonServiceTest {
 
         LivraisonDTO dto = livraisonService.modifierStatutLivraison(1L, Livraison.StatutLivraison.LIVREE);
 
-        assertEquals(Livraison.StatutLivraison.LIVREE.name(), dto.getStatut());
+        assertEquals(Livraison.StatutLivraison.LIVREE, dto.getStatut());
     }
 }

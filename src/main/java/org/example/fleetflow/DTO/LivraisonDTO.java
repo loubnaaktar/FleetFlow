@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.fleetflow.model.Chauffeur;
 import org.example.fleetflow.model.Client;
+import org.example.fleetflow.model.Livraison;
 import org.example.fleetflow.model.Vehicule;
 
 import java.time.LocalDateTime;
@@ -29,8 +30,8 @@ public class LivraisonDTO {
     @NotBlank(message = "L'adresse de destination est obligatoire")
     private String adresseDestination;
 
-    @NotBlank(message = "Le statut est obligatoire")
-    private String statut;
+    @NotNull(message = "Le statut est obligatoire")
+    private Livraison.StatutLivraison statut;
 
     private Chauffeur chauffeur;
     private Client client;
