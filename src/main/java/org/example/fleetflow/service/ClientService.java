@@ -1,16 +1,15 @@
 package org.example.fleetflow.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.fleetflow.DTO.ClientDTO;
 import org.example.fleetflow.Repository.ClientRepository;
-import org.example.fleetflow.Repository.LivraisonRepository;
 import org.example.fleetflow.mapper.ClientMapper;
 import org.example.fleetflow.model.Client;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 @Service
+@RequiredArgsConstructor
 public class ClientService {
 
     private final ClientRepository clientRepository;
