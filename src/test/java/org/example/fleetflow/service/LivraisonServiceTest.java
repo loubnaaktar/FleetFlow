@@ -132,6 +132,6 @@ class LivraisonServiceTest {
 
         LivraisonDTO dto = livraisonService.modifierStatutLivraison(1L, Livraison.StatutLivraison.LIVREE);
 
-        assertEquals(Livraison.StatutLivraison.LIVREE, dto.getStatut());
+        assertEquals(Livraison.StatutLivraison.LIVREE.name(), dto.getStatut());
     }
 }

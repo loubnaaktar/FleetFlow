@@ -12,9 +12,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientService {
 
-
     private final ClientRepository clientRepository;
+    private final LivraisonRepository livraisonRepository;
     private final ClientMapper mapper;
+
+    public ClientService(ClientRepository clientRepository, LivraisonRepository livraisonRepository, ClientMapper mapper) {
+        this.clientRepository = clientRepository;
+        this.livraisonRepository = livraisonRepository;
+        this.mapper = mapper;
+    }
 
     public ClientDTO addClient(ClientDTO clientDTO) {
         return mapper.toDTO(clientRepository.save(mapper.toEntity(clientDTO)));
