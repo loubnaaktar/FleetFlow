@@ -2,8 +2,8 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
-ADD target/fleetflow-github-actions.jar fleetflow-github-actions.jar
+COPY target/fleetflow-github-actions.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/fleetflow-github-actions.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
