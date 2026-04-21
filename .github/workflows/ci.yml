@@ -46,3 +46,12 @@ jobs:
 
       - name: Build with Maven
         run: mvn package -DskipTests
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+            image: loubnaakt/fleetflow-github-actions
+            tags: latest
+            registry: docker.io
+            dockerfile: Dockerfile
+            username: ${{ secrets.DOCKER_USERNAME }}
